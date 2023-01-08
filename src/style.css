@@ -61,8 +61,14 @@ button:focus-visible {
 }
 
 .icon{
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.truncate{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 input{
@@ -106,4 +112,25 @@ html[native-dark-active]:root{
 
 .clickable{
   cursor: pointer;
+}
+
+.w-100{
+  width:100%;
+}
+
+.h-100{
+  height:100%;
+}
+
+.capitalize{
+  text-transform: capitalize;
+}
+
+.expand {
+  transform: scale(1);  /* set the initial scale to 100% */
+  transition: transform .3s;  /* animate the transform property over 2 seconds */
+}
+
+.expand:hover {
+  transform: scale(1.5);  /* increase the size of the element to 300% */
 }

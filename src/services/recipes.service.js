@@ -14,6 +14,30 @@ const getRecipes = async (searchTerm, page_size) => {
     return res?.data;
 }
 
+const getRecommended = async (page_size=4) => {
+    const res = await axios.get(BASE_URL + '/random', {
+        params: {
+            apiKey: API_KEY,
+            number: page_size,
+        }
+    })
+    return res?.data;
+}
+
+const getAutoCompleteRecipes = async (searchTerm, page_size=3) => {
+    const res = await axios.get(BASE_URL + '/autocomplete', {
+        params: {
+            apiKey: API_KEY,
+            number: page_size,
+            query: searchTerm
+        }
+    })
+    return res?.data;
+}
+
+
 export default{
-    getRecipes
+    getRecipes,
+    getRecommended,
+    getAutoCompleteRecipes
 }

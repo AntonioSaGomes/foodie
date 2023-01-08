@@ -21,6 +21,7 @@ export default {
   flex-direction: column;
 }
 .main-container-page {
+  height: 100%;
   flex-grow: 1;
 }
 </style>

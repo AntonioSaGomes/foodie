@@ -1,11 +1,22 @@
 <template lang="">
   <div class="card">
-    <img class="clickable" :src="recipe.image" @click="openRecipe" />
+    <div
+      class="recipe-img clickable"
+      @click="openRecipe"
+      :style="{ backgroundImage: 'url(' + recipe.image + ')' }"
+    ></div>
     <div class="details">
-      <span class="time">Time: {{recipe.readyInMinutes}} minutes</span>
-      <span class="servings">Servings: {{recipe.servings}}</span>
-      <h2 class="title">{{recipe.title}}</h2>
+      <h2 class="title truncate">{{ recipe.title }}</h2>
+      <div class="detail-row">
+        <span class="time">Time: {{ recipe.readyInMinutes }} minutes</span>
+        <span class="servings">Servings: {{ recipe.servings }}</span>
+      </div>
     </div>
+    <img
+      src="/favorite-2.svg"
+      class="icon clickable expand favorite"
+      @click.stop="addToFavorites"
+    />
   </div>
 </template>
 <script>
@@ -21,51 +32,70 @@ export default {
   data() {
     return {};
   },
-  methods:{
-    openRecipe(){
-      window.open(this.recipe.sourceUrl, '_blank');
-    }
-  }
+  methods: {
+    openRecipe() {
+      window.open(this.recipe.sourceUrl, "_blank");
+    },
+    addToFavorites() {},
+  },
 };
 </script>
 <style scoped>
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow: hidden;
+  padding: 0rem;
+  width: 25%;
 }
 
-.card img {
+.recipe-img {
+  height: 70%;
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  background-size: cover;
 }
 
 .card .details {
+  flex-basis: 30%;
+  max-height: 30%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  font-size: 0.8rem;
 }
 
 .card .details .time {
-  font-size: 18px;
   color: #666;
   margin-bottom: 5px;
 }
 
 .card .details .servings {
-  font-size: 18px;
   color: #666;
   margin-bottom: 5px;
 }
 
 .card .details .title {
-  font-size: 22px;
+  width: calc(100% - 1rem);
+  font-size: 0.8rem;
   font-weight: bold;
   margin-bottom: 5px;
+}
+
+.favorite {
+  position: absolute;
+  z-index: 10;
+  right: 1rem;
+  top: 1rem;
+}
+
+.detail-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 </style>
