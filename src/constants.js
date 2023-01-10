@@ -5,3 +5,5 @@ export const SAN_FRANSCISCO_GEO = {
     lat: 34.7786357,
     lng:-122.3918135
 }
+
+export const INGREDIENTS_IMAGE_PATH = 'https://spoonacular.com/cdn/ingredients_100x100/'

@@ -12,7 +12,7 @@
       @blur="focus = false"
       :placeholder="placeholder"
     />
-    <div class="icon-wrapper">
+    <div v-if="icon" class="icon-wrapper">
       <img class="icon clickable" src="/search_icon.svg" @click="search" />
     </div>
     <div v-if="showResults && focus" class="search-results">
@@ -24,7 +24,7 @@
         @mouseover="setSelectedResult(index)"
         @mousedown="selectResult(result)"
       >
-        {{ result.title }}
+        {{ result.title || result.name }}
       </div>
     </div>
   </div>
@@ -41,12 +41,16 @@ export default {
       type: Array,
       default: [],
     },
+    icon: {
+      type: Boolean,
+      default: true,
+    },
   },
   emits: ["search", "autoSearch", "searchResult"],
   data() {
     return {
       searchTerm: "",
-      selectedResultIndex: 0,
+      selectedResultIndex: -1,
       focus: false,
     };
   },
@@ -57,13 +61,20 @@ export default {
   },
   methods: {
     search() {
+      this.focus = false;
+      this.searchTerm =
+        this.selectedResultIndex > -1
+          ? this.searchResults[this.selectedResultIndex].title ||
+            this.searchResults[this.selectedResultIndex].name
+          : this.searchTerm;
       this.$emit("search", this.searchTerm);
     },
     searchAutoComplete() {
       this.$emit("autoSearch", this.searchTerm);
     },
     selectResult(result) {
-      this.$emit("searchResult", result.id);
+      this.$emit("searchResult", result.id || result.name);
+      this.searchTerm = "";
     },
     setSelectedResult(index) {
       this.selectedResultIndex = index;
@@ -89,10 +100,11 @@ export default {
 }
 .search-input {
   flex-basis: 75%;
+  height: calc(100% - 1rem);
   border: none;
   border-radius: 5px 0 0 5px;
-  padding: 0.5em;
-  font-size: 1em;
+  padding: 0.5rem;
+  font-size: 1rem;
   outline: none;
 }
 .search-results {
@@ -100,6 +112,7 @@ export default {
   top: 100%;
   z-index: 1;
   border: 1px solid #ccc;
+  background-color: white;
   border-top: none;
   width: 100%;
 }
@@ -113,7 +126,8 @@ export default {
 }
 
 .search-container {
-  position: relative;
+  position: sticky;
+  height: 50px;
   width: 20%;
   display: flex;
   align-items: center;

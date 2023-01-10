@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto,Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -51,6 +51,7 @@ button:focus-visible {
 
 .card {
   padding: 2em;
+  background-color: var(--card-color);
 }
 
 #app {
@@ -78,9 +79,11 @@ input{
 
 @media (prefers-color-scheme: light) {
   :root {
-    --main-color: #E2EFFD;
-    --secondary-color:#ADD4F2;
-    --text-color: #2E5392;
+    --main-color: #FF8300;
+    --secondary-color:#CC5500;
+    --text-color: #333333;
+    --button-color:#97D9F2;
+    --card-color:white;
     color: #213547;
   }
   button {

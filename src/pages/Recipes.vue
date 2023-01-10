@@ -1,28 +1,49 @@
 <template>
   <div class="recipes-container">
-    <SearchInput
-      @search="search"
-      @autoSearch="getAutoRecipes"
-      :searchResults="autoRecipes"
-      placeholder="Search recipes..."
-    />
-    <div class="recipes-main-container">
-      <div v-if="!recipes?.length" class="recomendations w-100">
-        <h2 class="recomendations-subtitle">Recomendations</h2>
-        <div class="cards-container-carrousel w-100">
-          <RecipeCard
-            v-if="recommendedRecipes?.length"
-            v-for="recipe in recommendedRecipes"
-            :recipe="recipe"
-          />
-        </div>
-      </div>
-      <div v-if="recipes?.length" class="recipes">
-        <RecipeCard
-          v-for="recipe in recipes"
-          :key="recipe.id"
-          :recipe="recipe"
-        />
+    <div class="search-container-wrapper">
+      <SearchInput
+        @search="search"
+        @autoSearch="getAutoRecipes"
+        :searchResults="autoRecipes"
+        placeholder="Search recipes..."
+      />
+    </div>
+    <div class="recipes-main-container-wrapper">
+      <div class="recipes-main-container">
+        <template v-if="loading">
+          <LoadingSpinner />
+        </template>
+        <template v-else>
+          <div
+            v-if="!recipes?.length && favoriteRecipes?.length"
+            class="recomendations w-100"
+          >
+            <h2 class="recomendations-subtitle">Favourites</h2>
+            <div class="cards-container-carrousel w-100">
+              <div class="carrousel-item" v-for="recipe in favoriteRecipes">
+                <RecipeCard :recipe="recipe" />
+              </div>
+            </div>
+          </div>
+          <div v-if="!recipes?.length" class="recomendations w-100">
+            <h2 class="recomendations-subtitle">Recomendations</h2>
+            <div class="cards-container-carrousel w-100">
+              <div class="carrousel-item" v-for="recipe in recommendedRecipes">
+                <RecipeCard
+                  v-if="recommendedRecipes?.length"
+                  :recipe="recipe"
+                />
+              </div>
+            </div>
+          </div>
+          <div v-if="recipes?.length" class="recipes">
+            <RecipeCard
+              v-for="recipe in recipes"
+              :key="recipe.id"
+              :recipe="recipe"
+            />
+          </div>
+        </template>
       </div>
     </div>
   </div>
@@ -32,27 +53,43 @@
 import recipesService from "../services/recipes.service";
 import RecipeCard from "../components/RecipeCard.vue";
 import SearchInput from "../components/SearchInput.vue";
+import { getFavouriteRecipes } from "../services/firebase.service";
+import LoadingSpinner from "../components/LoadingSpinner.vue";
 export default {
-  components: { RecipeCard, SearchInput },
+  components: { RecipeCard, SearchInput, LoadingSpinner },
   data() {
     return {
       recommendedRecipes: null,
       recipes: null,
       autoRecipes: [],
+      favoriteRecipes: [],
+      loading: false,
     };
   },
   created() {
     this.getRecommended();
+    this.getFavouriteRecipes();
   },
   methods: {
     async search(searchTerm) {
+      this.loading = true;
       const data = await recipesService.getRecipes(searchTerm, 10);
+      this.loading = false;
+      const baseUrl = data?.baseUri;
       this.recipes = data.results.map((res) => {
-        res.image = res.image;
+        res.image = baseUrl + res.image;
         return res;
       });
     },
-
+    async getFavouriteRecipes() {
+      const querySnapshot = await getFavouriteRecipes(this.$firestore, 10);
+      querySnapshot.forEach((doc) => {
+        this.favoriteRecipes.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+    },
     async getRecommended() {
       const data = await recipesService.getRecommended();
       console.log(data);
@@ -74,16 +111,31 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  width: calc(100% - 4rem);
   height: calc(100% - 1rem);
 }
 
-.recipes-main-container {
-  flex-grow: 1;
+.search-container-wrapper {
+  flex-basis: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+}
+.recipes-main-container-wrapper {
+  flex-grow: 1;
   overflow-y: auto;
+  width: 100%;
+}
+
+.recipes-main-container {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: calc(100% - 4rem);
+  height: 100%;
+}
+.carrousel-item {
+  height: 100%;
+  width: 33%;
 }
 .cards-container-carrousel {
   display: flex;
@@ -99,6 +151,7 @@ export default {
   flex-grow: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 250px;
 }
 
 .recomendations-subtitle {

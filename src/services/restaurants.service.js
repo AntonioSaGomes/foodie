@@ -16,14 +16,14 @@ const getRestaurants = async (searchTerm, page_size) => {
 //Just North America
 //SAN Franscico
 const restaurantsNearBy = async(page_size=4) => {
-    const res = await axios.get(BASE_URL + '/search', {
+    const URL = `https://api.spoonacular.com/food/restaurants/search?cuisine=italian&lat=34.7786357&lng=-122.3918135&apiKey=${API_KEY}`
+/*     const res = await axios.get(BASE_URL + '/search', {
         params: {
             apiKey: API_KEY,
-            sort: 'rating',
-            page: 0,
-            ...SAN_FRANSCISCO_GEO
+
         }
-    });
+    }); */
+    const res = await axios.get(URL);
     return res?.data;
 }
 

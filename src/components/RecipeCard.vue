@@ -20,12 +20,12 @@
   </div>
 </template>
 <script>
-import Recipe from "../model/Recipe.js";
+import * as firestoreService from "../services/firebase.service";
 
 export default {
   props: {
     recipe: {
-      type: Recipe,
+      type: Object,
       required: true,
     },
   },
@@ -36,7 +36,13 @@ export default {
     openRecipe() {
       window.open(this.recipe.sourceUrl, "_blank");
     },
-    addToFavorites() {},
+    addToFavorites() {
+      firestoreService
+        .addFavouriteRecipes(this.$firestore, this.recipe)
+        .then(() => {
+          console.log("added");
+        });
+    },
   },
 };
 </script>
@@ -50,7 +56,8 @@ export default {
   border-radius: 5px;
   overflow: hidden;
   padding: 0rem;
-  width: 25%;
+  width: 100%;
+  height: 100%;
 }
 
 .recipe-img {

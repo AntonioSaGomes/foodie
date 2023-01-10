@@ -1,7 +1,7 @@
 <template lang="">
   <div class="side-bar-menu">
     <div class="side-bar-logo">
-      <img class="logo" src="/food.png" />
+      <img class="logo" src="/logo.png" />
     </div>
     <nav>
       <ul>
@@ -23,7 +23,13 @@ import { useDark, useToggle } from "@vueuse/core";
 export default {
   data() {
     return {
-      menuOptions: ["recipes", "restaurants", "ingredients", "profile"],
+      menuOptions: [
+        "recipes",
+        "restaurants",
+        "ingredients",
+        "profile",
+        "logout",
+      ],
     };
   },
   methods: {
@@ -45,7 +51,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  flex-basis: max(15%, 100px);
+  flex-basis: max(10%, 100px);
 }
 .side-bar-logo {
   display: grid;
@@ -72,6 +78,7 @@ ul {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  gap: 0.5rem;
 }
 .nav-item:hover {
   background-color: var(--main-color);

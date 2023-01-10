@@ -1,6 +1,12 @@
 <template lang="">
   <div class="restaurants-container">
-    <SearchInput @search="searchRestaurants" />
+    <SearchInput
+      @search="searchRestaurants"
+      placeholder="Search restaurants..."
+    />
+    <div class="restaurants-main-wrapper">
+      <h2 class="recomendations-subtitle">Eat Out</h2>
+    </div>
   </div>
 </template>
 <script>
@@ -41,5 +47,14 @@ export default {
   padding-right: 2rem;
   width: calc(100% - 4rem);
   height: calc(100% - 1rem);
+}
+
+.restaurants-main-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.recomendations-subtitle {
+  text-align: left;
 }
 </style>
