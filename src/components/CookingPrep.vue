@@ -13,6 +13,10 @@ export default {
 </script>
 <style>
 .cook-prep {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: flex-start;
   width: 100%;
 }
 </style>

@@ -19,6 +19,7 @@ export default {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 .main-container-page {
   height: 100%;
