@@ -20,6 +20,7 @@ export default {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  background-color: var(--main-color);
 }
 .main-container-page {
   height: 100%;

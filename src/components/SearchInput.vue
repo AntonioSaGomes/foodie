@@ -112,7 +112,7 @@ export default {
   top: 100%;
   z-index: 1;
   border: 1px solid #ccc;
-  background-color: white;
+  background-color: var(--card-color);
   border-top: none;
   width: 100%;
 }
@@ -123,6 +123,7 @@ export default {
 .search-result.selected,
 .search-result:hover {
   background-color: #eee;
+  color: black;
 }
 
 .search-container {

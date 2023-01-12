@@ -102,6 +102,7 @@ input {
     --button-color: #213547;
     --card-color: #333333;
     color: #97d9f2;
+    background-color: #333333;
   }
   button {
     background-color: #333333;

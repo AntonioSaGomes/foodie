@@ -41,7 +41,7 @@
           </div>
           <div
             v-if="recipes?.length"
-            class="recipes grid grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4"
+            class="recipes grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4"
           >
             <RecipeCard
               v-for="recipe in recipes"
@@ -133,6 +133,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
+  z-index: 100;
 }
 .recipes-main-container-wrapper {
   flex-grow: 1;
