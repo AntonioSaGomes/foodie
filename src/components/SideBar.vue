@@ -21,9 +21,12 @@
             @click="navigate(option)"
           >
             <img class="icon" :src="`/${option}.svg`" />
-            <span v-if="isVisible" class="capitalize"> {{ option }} </span>
+            <span v-if="isVisible" class="menu-option-name capitalize">
+              {{ option }}
+            </span>
           </li>
-          <li class="nav-item bold clickable" @click="toogleDark">Dark Mode</li>
+          <!--           <li class="nav-item bold clickable" @click="toogleDark">Dark Mode</li>
+ -->
         </ul>
       </div>
     </nav>
@@ -96,5 +99,19 @@ ul {
 }
 .nav-item:hover {
   background-color: var(--main-color);
+}
+
+@media screen and (max-width: 800px) {
+  .side-bar-menu {
+    flex-basis: min(4rem, 15%);
+  }
+
+  .menu-option-name {
+    display: none;
+  }
+
+  .logo {
+    display: none;
+  }
 }
 </style>

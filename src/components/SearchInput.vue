@@ -128,7 +128,6 @@ export default {
 .search-container {
   position: sticky;
   height: 50px;
-  width: 20%;
   display: flex;
   align-items: center;
 }

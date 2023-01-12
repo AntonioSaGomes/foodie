@@ -29,7 +29,7 @@
             <h2 class="recomendations-subtitle">Recomendations</h2>
             <div class="cards-container-carrousel w-100">
               <div
-                class="carrousel-item flex lg:basis-1/3 md:basis-1/2"
+                class="carrousel-item flex"
                 v-for="recipe in recommendedRecipes"
               >
                 <RecipeCard
@@ -141,17 +141,18 @@ export default {
 }
 
 .recipes-main-container {
-  padding-left: 2rem;
-  padding-right: 2rem;
-  width: calc(100% - 4rem);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: calc(100% - 2rem);
   height: 100%;
 }
 .carrousel-item {
   height: 100%;
+  min-width: 300px;
+  width: 300px;
 }
 .cards-container-carrousel {
   display: flex;
-  max-width: 95%;
   gap: 10px;
   overflow-x: auto;
   padding-top: 20px;
@@ -160,6 +161,20 @@ export default {
 }
 
 .recomendations-subtitle {
+  font-weight: bold;
   text-align: left;
+}
+
+@media screen and (max-width: 800px) {
+  .carrousel-item {
+    min-width: 200px;
+    width: 200px;
+  }
+  .recipes {
+    width: 100%;
+    flex-grow: 1;
+    display: grid;
+    grid-auto-rows: 150px;
+  }
 }
 </style>
