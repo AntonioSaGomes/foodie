@@ -1,20 +1,31 @@
 <template lang="">
-  <div class="side-bar-menu">
-    <div class="side-bar-logo">
-      <img class="logo" src="/logo.png" />
+  <div
+    class="side-bar-menu md:menu-hidden"
+    :class="{ 'menu-hidden': !isVisible }"
+  >
+    <div class="side-bar-logo flex justify-center gap-2 items-center">
+      <img class="icon clickable" @click="toggleSideBar()" src="/menu.svg" />
+      <img
+        class="logo clickable"
+        v-if="isVisible"
+        @click="navigate('home')"
+        src="/logo.png"
+      />
     </div>
     <nav>
-      <ul>
-        <li
-          v-for="option in menuOptions"
-          class="nav-item bold clickable"
-          @click="navigate(option)"
-        >
-          <img class="icon" :src="`/${option}.svg`" />
-          <span class="capitalize"> {{ option }} </span>
-        </li>
-        <li class="nav-item bold clickable" @click="toogleDark">Dark Mode</li>
-      </ul>
+      <div class="side-menu-content">
+        <ul>
+          <li
+            v-for="option in menuOptions"
+            class="nav-item bold clickable"
+            @click="navigate(option)"
+          >
+            <img class="icon" :src="`/${option}.svg`" />
+            <span v-if="isVisible" class="capitalize"> {{ option }} </span>
+          </li>
+          <li class="nav-item bold clickable" @click="toogleDark">Dark Mode</li>
+        </ul>
+      </div>
     </nav>
   </div>
 </template>
@@ -23,20 +34,18 @@ import { useDark, useToggle } from "@vueuse/core";
 export default {
   data() {
     return {
-      menuOptions: [
-        "recipes",
-        "restaurants",
-        "ingredients",
-        "profile",
-        "logout",
-      ],
+      isVisible: true,
+      menuOptions: ["recipes", "restaurants", "ingredients", "login", "logout"],
     };
   },
   methods: {
+    toggleSideBar() {
+      console.log("hello");
+      this.isVisible = !this.isVisible;
+    },
     navigate(option) {
       const name = option.toLowerCase();
-      //TODO: find out why push by name not working
-      this.$router.push({ path: name });
+      this.$router.push({ name });
     },
     toogleDark() {
       const isDark = useDark();
@@ -52,17 +61,22 @@ export default {
   display: flex;
   flex-direction: column;
   flex-basis: max(10%, 100px);
+  background-color: var(--secondary-color);
 }
+
+.side-bar-menu.menu-hidden {
+  flex-basis: max(5%, 50px);
+}
+
 .side-bar-logo {
-  display: grid;
-  place-content: center;
   flex-basis: 15%;
+  border-bottom: 2px solid var(--main-color);
 }
+
 nav {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-color: var(--secondary-color);
 }
 ul {
   margin: 0px;

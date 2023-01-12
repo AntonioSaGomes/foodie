@@ -73,8 +73,8 @@ export default {
       this.$emit("autoSearch", this.searchTerm);
     },
     selectResult(result) {
+      this.focus = false;
       this.$emit("searchResult", result.id || result.name);
-      this.searchTerm = "";
     },
     setSelectedResult(index) {
       this.selectedResultIndex = index;

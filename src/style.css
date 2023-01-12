@@ -1,9 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Roboto,Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -58,32 +61,32 @@ button:focus-visible {
   height: 100%;
   width: 100%;
   text-align: center;
-  color: var(--text-color)
+  color: var(--text-color);
 }
 
-.icon{
+.icon {
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.truncate{
+.truncate {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-input{
+input {
   height: 2rem;
   color: var(---text-color);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --main-color: #FF8300;
-    --secondary-color:#CC5500;
+    --main-color: #ff8300;
+    --secondary-color: #cc5500;
     --text-color: #333333;
-    --button-color:#97D9F2;
-    --card-color:white;
+    --button-color: #97d9f2;
+    --card-color: white;
     color: #213547;
   }
   button {
@@ -93,47 +96,48 @@ input{
 
 @media (prefers-color-scheme: dark) {
   :root {
-    color: #213547;
-    --main-color: darkgray;
-    --secondary-color: purple;
-    --text-color: white;
+    --main-color: #cc5500;
+    --secondary-color: #ff8300;
+    --text-color: #f9f9f9;
+    --button-color: #213547;
+    --card-color: #333333;
+    color: #97d9f2;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #333333;
   }
 }
 
-html[native-dark-active]:root{
-  color: #213547;
-  --main-color: darkgray;
-  --secondary-color: purple;
-  --text-color: white;
-}
-.bold{
+.bold {
   font-weight: bold;
 }
 
-.clickable{
+.clickable {
   cursor: pointer;
 }
 
-.w-100{
-  width:100%;
+.icon-large {
+  height: 3rem;
+  width: 3rem;
 }
 
-.h-100{
-  height:100%;
+.w-100 {
+  width: 100%;
 }
 
-.capitalize{
+.h-100 {
+  height: 100%;
+}
+
+.capitalize {
   text-transform: capitalize;
 }
 
 .expand {
-  transform: scale(1);  /* set the initial scale to 100% */
-  transition: transform .3s;  /* animate the transform property over 2 seconds */
+  transform: scale(1); /* set the initial scale to 100% */
+  transition: transform 0.3s; /* animate the transform property over 2 seconds */
 }
 
 .expand:hover {
-  transform: scale(1.5);  /* increase the size of the element to 300% */
+  transform: scale(1.5); /* increase the size of the element to 300% */
 }

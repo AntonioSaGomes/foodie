@@ -28,7 +28,10 @@
           <div v-if="!recipes?.length" class="recomendations w-100">
             <h2 class="recomendations-subtitle">Recomendations</h2>
             <div class="cards-container-carrousel w-100">
-              <div class="carrousel-item" v-for="recipe in recommendedRecipes">
+              <div
+                class="carrousel-item flex lg:basis-1/3 md:basis-1/2"
+                v-for="recipe in recommendedRecipes"
+              >
                 <RecipeCard
                   v-if="recommendedRecipes?.length"
                   :recipe="recipe"
@@ -36,7 +39,10 @@
               </div>
             </div>
           </div>
-          <div v-if="recipes?.length" class="recipes">
+          <div
+            v-if="recipes?.length"
+            class="recipes grid grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4"
+          >
             <RecipeCard
               v-for="recipe in recipes"
               :key="recipe.id"
@@ -114,6 +120,13 @@ export default {
   height: calc(100% - 1rem);
 }
 
+.recipes {
+  width: 100%;
+  flex-grow: 1;
+  display: grid;
+  grid-auto-rows: 250px;
+}
+
 .search-container-wrapper {
   flex-basis: 15%;
   display: flex;
@@ -135,7 +148,6 @@ export default {
 }
 .carrousel-item {
   height: 100%;
-  width: 33%;
 }
 .cards-container-carrousel {
   display: flex;
@@ -145,13 +157,6 @@ export default {
   padding-top: 20px;
   padding-bottom: 20px;
   height: 250px;
-}
-.recipes {
-  width: 100%;
-  flex-grow: 1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 250px;
 }
 
 .recomendations-subtitle {
