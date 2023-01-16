@@ -9,8 +9,6 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: var(--main-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -100,8 +98,8 @@ input {
     --secondary-color: #ff8300;
     --text-color: #f9f9f9;
     --button-color: #213547;
-    --card-color: #333333;
-    color: #97d9f2;
+    --card-color: darkgray;
+    color: gray;
     background-color: #333333;
   }
   button {
@@ -132,6 +130,11 @@ input {
 
 .capitalize {
   text-transform: capitalize;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  text-align: left;
 }
 
 .expand {

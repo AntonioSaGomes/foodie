@@ -54,7 +54,7 @@ export default {
   width: calc(100% - 3rem);
   border-radius: 4px;
   flex-direction: column;
-  background-color: whitesmoke;
+  background-color: var(--card-color);
   align-items: flex-start;
   padding: 1rem;
   margin-bottom: 1rem;

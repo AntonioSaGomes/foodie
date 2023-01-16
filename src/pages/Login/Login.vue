@@ -2,7 +2,7 @@
   <div class="login-wrapper">
     <div class="login-container">
       <span class="title bold">Login</span>
-      <Input label="name" placeholder="name"></Input>
+      <Input class="text-left" label="name" placeholder="name"></Input>
       <Input
         label="password"
         placeholder="password"

@@ -1,6 +1,6 @@
 <template lang="">
   <div class="cook-prep">
-    <h4>Cooking preparation</h4>
+    <h3 class="section-title">Cooking preparation</h3>
     <TextArea width="100%" />
   </div>
 </template>
@@ -13,10 +13,14 @@ export default {
 </script>
 <style>
 .cook-prep {
+  gap: 1rem;
   display: flex;
   flex-direction: column;
   height: 100%;
   align-items: flex-start;
   width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-sizing: border-box;
 }
 </style>

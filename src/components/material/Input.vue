@@ -40,7 +40,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: 100%;
 }
@@ -52,10 +52,5 @@ export default {
 
 .input-container input::placeholder {
   text-transform: capitalize;
-}
-
-input,
-label {
-  width: 75%;
 }
 </style>
