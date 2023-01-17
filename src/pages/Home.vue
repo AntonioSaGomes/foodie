@@ -8,7 +8,7 @@
         <div class="card clickable" @click="navigate('restaurants')">
           <h1 class="card-title">Eat out</h1>
           <div class="card-details">
-            <img class="card-image" src="eat-out.jpeg" alt="" />
+            <img class="card-image" src="/eat-out.jpeg" alt="" />
             <p class="card-description">
               Looking for a great restaurant to enjoy with friends and family?
               Our restaurant search and selection feature makes it easy to find
