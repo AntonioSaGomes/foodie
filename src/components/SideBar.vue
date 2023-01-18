@@ -13,7 +13,7 @@
       />
     </div>
     <nav>
-      <div class="side-menu-content">
+      <div class="side-menu-content lg:w-40 md:w-30">
         <ul>
           <li
             v-for="option in menuOptions"
@@ -63,7 +63,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  flex-basis: max(10%, 100px);
+  width: 10rem;
   background-color: var(--secondary-color);
 }
 

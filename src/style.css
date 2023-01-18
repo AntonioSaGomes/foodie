@@ -22,8 +22,12 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
-  height: 100vh;
+}
+
+:root,
+html,
+body {
+  height: 100%;
 }
 
 h1 {
@@ -67,12 +71,6 @@ button:focus-visible {
   height: 1.5rem;
 }
 
-.truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 input {
   height: 2rem;
   color: var(---text-color);
@@ -82,20 +80,6 @@ input {
   :root {
     --main-color: #ff8300;
     --secondary-color: #cc5500;
-    --text-color: #333333;
-    --button-color: #97d9f2;
-    --card-color: white;
-    color: #213547;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --main-color: #cc5500;
-    --secondary-color: #ff8300;
     --text-color: #f9f9f9;
     --button-color: #213547;
     --card-color: darkgray;
@@ -104,6 +88,20 @@ input {
   }
   button {
     background-color: #333333;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-color: #cc5500;
+    --secondary-color: #ff8300;
+    --text-color: #333333;
+    --button-color: #97d9f2;
+    --card-color: white;
+    color: #213547;
+  }
+  button {
+    background-color: #f9f9f9;
   }
 }
 
@@ -144,4 +142,16 @@ input {
 
 .expand:hover {
   transform: scale(1.5); /* increase the size of the element to 300% */
+}
+
+@media screen and (max-width: 1024px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    font-size: 10px;
+  }
 }

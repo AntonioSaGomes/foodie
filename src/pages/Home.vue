@@ -4,10 +4,10 @@
       <span className="text-3xl font-bold underline">Welcome to Foodie</span>
     </div>
     <div class="home-container-wrapper mt-3">
-      <div class="hello-container grid grid-cols-2 md:grid-cols-1 gap-4">
+      <div class="hello-container grid grid-cols-1 md:grid-cols-1 gap-4">
         <div class="card clickable" @click="navigate('restaurants')">
           <h1 class="card-title">Eat out</h1>
-          <div class="card-details">
+          <div class="card-details flex lg:flex-row lg:items-start">
             <img class="card-image" src="/eat-out.jpeg" alt="" />
             <p class="card-description">
               Looking for a great restaurant to enjoy with friends and family?
@@ -22,7 +22,7 @@
 
         <div class="card clickable" @click="navigate('recipes')">
           <h1 class="card-title">Cook your meal</h1>
-          <div class="card-details">
+          <div class="card-details flex lg:flex-row lg:items-start">
             <img class="card-image" src="/cooking.jpeg" alt="" />
             <p class="card-description">
               Looking for inspiration in the kitchen? Our recipe search feature
@@ -36,7 +36,7 @@
         </div>
         <div class="card clickable" @click="navigate('ingredients')">
           <h1 class="card-title">Create a recipe</h1>
-          <div class="card-details">
+          <div class="card-details flex lg:flex-row lg:items-start">
             <img class="card-image" src="/create-recipe.jpeg" />
             <p class="card-description">
               Get creative in the kitchen with our recipe creation feature.
@@ -66,6 +66,7 @@ export default {
   background-color: var(--secondary-color);
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
 }
 .card-title {
@@ -73,8 +74,9 @@ export default {
 }
 
 .card-details {
-  display: flex;
+  max-height: 400px;
   gap: 2rem;
+  font-size: 0.8rem;
 }
 
 .card-image {
@@ -82,9 +84,31 @@ export default {
   height: 250px;
 }
 
+@media screen and (max-width: 1024px) {
+  .card-image {
+    width: 250px;
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card-image {
+    width: 200px;
+    height: 100px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card-image {
+    width: 350px;
+    height: 200px;
+  }
+  .card-description {
+    display: none;
+  }
+}
 .card-description {
   font-size: 1.5rem;
-  line-height: 2rem;
   text-align: left;
 }
 </style>
